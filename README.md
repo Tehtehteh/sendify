@@ -1,6 +1,6 @@
 ## Running server
 ```bash
-docker run --rm -t sendify_app -p 8080:8080 .
+docker build -t sendify . && docker run --rm --name sendify-app -p 8080:8080 sendify
 ```
 ## Testing backend against request
 (Must have cURL installed)
