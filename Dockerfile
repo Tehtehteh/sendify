@@ -15,7 +15,12 @@ RUN ["echo", "Done installing dependencies. Launching application..."]
 
 EXPOSE 8080
 
-RUN ["export",  "PYTHONPATH=\"${PYTHONPATH}:/sendify/src\""]
-RUN ["echo", "$PYTHONPATH"]
+ENV PYTHONPATH="$PYTHONPATH:/sendify/src"
+
+RUN ["echo", "Running tests..."]
+
+RUN ["python", "src/tests/tests_main.py"]
+
+RUN ["echo", "Launching application"]
 
 CMD ["python", "src/main.py"]

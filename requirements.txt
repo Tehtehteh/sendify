@@ -1,7 +1,5 @@
-mock
 asynctest
 pyyaml
 aiohttp
-sqlalchemy
 trafaret
 trafaret_validator

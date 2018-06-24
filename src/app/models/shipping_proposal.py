@@ -31,23 +31,16 @@ class ShippingProposal(object):
 
     @classmethod
     async def from_request(cls, req):
-        json = await req.json()
-        return cls.from_json(json)
+        model_json = await req.json()
+        return cls.from_json(model_json)
 
     @classmethod
-    def from_json(cls, _json):
-        is_valid = cls.validate(_json)
+    def from_json(cls, model_json):
+        is_valid = cls.validate(model_json)
         if not is_valid:
             logging.warning('Validation failed for ShippingProposal')
             return None
-        kwargs = {
-            'origin': _json['origin'],
-            'destination': _json['destination'],
-            'package_type': _json['package_type'],
-            'dimensions': _json['dimensions'],
-            'weight': _json['weight']
-        }
-        return cls(**kwargs)
+        return cls(**model_json)
 
     @classmethod
     def validate(cls, _json):
