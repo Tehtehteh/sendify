@@ -1,16 +1,21 @@
 import logging
 import asyncio
 
-from .app import make_application
+from app import make_application
 
 logging.basicConfig(format='[%(asctime)s] [%(pathname)s:%(lineno)d] %(levelname)8s: %(message)s')
 log = logging.getLogger('application')
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.INFO)
+
+loop = asyncio.get_event_loop()
 
 
 async def main():
-    input()
+    app = await make_application()
+    """:type: app.Application"""
+    app.prepare()
+    app.start()
 
 
 if __name__ == '__main__':
-    asyncio.get_event_loop().run_until_complete(main())
+    loop.run_until_complete(main())

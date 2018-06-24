@@ -7,27 +7,26 @@ services:
       context: .
       dockerfile: dockerfiles/app/Dockerfile
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/_healthz"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/v1/_healthz"]
       interval: 30s
       timeout: 10s
       retries: 3
     ports:
       - 8080:8080
-    command:
-      ["python", "main.py"]
-    working_dir: "/src"
     volumes:
       - .:/sendify
-  mysql:
-    container_name: sendify_database
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-    volumes:
-      - database_volume:/var/lib/mysql
-    restart: always
-    ports:
-      - 33306:3306
+    command: ["python", "src/main.py"]
 
-volumes:
-  database_volume:
+#  mysql:
+#    container_name: sendify_database
+#    image: mysql:latest
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=root
+#    volumes:
+#      - database_volume:/var/lib/mysql
+#    restart: always
+#    ports:
+#      - 33306:3306
+
+#volumes:
+#  database_volume:

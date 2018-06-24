@@ -1,2 +1,7 @@
+import aiohttp
+
+from aiohttp import web
+
+
 async def health(req):
-    return b'all gud'
+    return web.json_response({'ok': True})

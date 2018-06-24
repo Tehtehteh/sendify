@@ -2,8 +2,8 @@ from aiohttp import web
 
 
 def make_app():
-    return web.Application
+    return web.Application()
 
 
-def run_app(app, port):
-    web.run_app(app=app, port=port)
+def run_app(app, port, **kwargs):
+    web.run_app(app=app, port=port, **kwargs)

@@ -1,0 +1,1 @@
+from .shipping_proposal import ShippingProposal
